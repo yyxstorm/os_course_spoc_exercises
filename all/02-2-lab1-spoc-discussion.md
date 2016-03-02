@@ -8,8 +8,8 @@
 > RPL说明的是进程对段访问的请求权限(RequestPrivilegeLevel)，是对于段选择子而言的，每个段选择子有自己的RPL，它说明的是进程对段访问的请求>权限，有点像函数参数。
 
 > 访问条件：
-一、对数据段和堆栈段访问时的特权级控制：max {CPL, RPL} ≤ DPL 
-二、对代码段访问的特权级控制（代码执行权的特权转移）： 
+> 一、对数据段和堆栈段访问时的特权级控制：max {CPL, RPL} ≤ DPL 
+> 二、对代码段访问的特权级控制（代码执行权的特权转移）： 
 （1） 普通转跳 
     1.目标是一致代码段：要求CPL(CS.RPL)>=DestinationDescriptorCode.DPL 
     2.目标是非一致代码段： 要求CPL(CS.RPL)＝DestinationDescriptorCode.DPL　AND　RPL≤CPL(CS.RPL) 
