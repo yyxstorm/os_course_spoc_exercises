@@ -3,9 +3,11 @@
   - 
 
 
-DPL存储在段描述符中，规定访问该段的权限级别(Descriptor Privilege Level)，每个段的DPL固定,代表真正的特权级。 CPL是当前进程的权限级别(Current Privilege Level)，是当前正在执行的代码所在的段的特权级，存在于cs寄存器的低两位。 RPL说明的是进程对段访问的请求权限(RequestPrivilegeLevel)，是对于段选择子而言的，每个段选择子有自己的RPL，它说明的是进程对段访问的请求权限，有点像函数参数。
+> DPL存储在段描述符中，规定访问该段的权限级别(Descriptor Privilege Level)，每个段的DPL固定,代表真正的特权级。 
+> CPL是当前进程的权限级别(Current Privilege Level)，是当前正在执行的代码所在的段的特权级，存在于cs寄存器的低两位。 
+> RPL说明的是进程对段访问的请求权限(RequestPrivilegeLevel)，是对于段选择子而言的，每个段选择子有自己的RPL，它说明的是进程对段访问的请求>权限，有点像函数参数。
 
-访问条件：
+> 访问条件：
 一、对数据段和堆栈段访问时的特权级控制：max {CPL, RPL} ≤ DPL 
 二、对代码段访问的特权级控制（代码执行权的特权转移）： 
 （1） 普通转跳 
@@ -23,15 +25,15 @@ DPL存储在段描述符中，规定访问该段的权限级别(Descriptor Privi
 
 
 
-特权级变换，就会涉及到两个堆栈，外层堆栈（调用者堆栈）和内层堆栈（被调用者堆栈）。涉及到两个堆栈，那就得使用到TSS(Task-State Stack)取得其余堆栈的ss和esp。TSS里面包含多个字段，现在只关心偏移4到偏移27的3个ss和3个esp。我们有四个特权级ring0,ring1,ring2 & ring3,当转移是从外层到内层时（低特权级到高特权级），利用call指令，新的堆栈ss & esp才会从TSS中取得，因此只需记录ring0,ring1,ring2 的ss 和 esp 。而特权级从高到低转移时，必须用retf指令。
+> 特权级变换，就会涉及到两个堆栈，外层堆栈（调用者堆栈）和内层堆栈（被调用者堆栈）。涉及到两个堆栈，那就得使用到TSS(Task-State Stack)取得其余堆栈的ss和esp。TSS里面包含多个字段，现在只关心偏移4到偏移27的3个ss和3个esp。我们有四个特权级ring0,ring1,ring2 & ring3,当转移是从外层到内层时（低特权级到高特权级），利用call指令，新的堆栈ss & esp才会从TSS中取得，因此只需记录ring0,ring1,ring2 的ss 和 esp 。而特权级从高到低转移时，必须用retf指令。
 
-call 准备工作： 
+> call 准备工作： 
 1.准备一个调用门描述符和调用门选择子（注意描述符的DPL大于等于源代码段的CPL和RPL），并初始化 
 2.准备TSS，只需要目标段DPL的堆栈位置即可 
 3.加载TSS 
 4.call调用门
 
-retf 总结就四个压栈： 
+> retf 总结就四个压栈： 
 1.压入目标段的SS 
 2.压入目标段的esp 
 3.压入目标段的CS 
