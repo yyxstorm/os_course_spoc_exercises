@@ -42,7 +42,7 @@ Virtual Address 748b:
 
 ```
 #include <iostream>  
-int memo[4096];//4KB内存 
+int memo[4096];
 uint32_t get_page(uint32_t v_addr) {
  	uint32_t ans = 0; 
 	uint32_t pde = v_addr & 0x00007c00; 
