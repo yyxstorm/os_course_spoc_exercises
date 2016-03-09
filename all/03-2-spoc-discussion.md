@@ -41,7 +41,9 @@ Virtual Address 748b:
 （3）请基于你对原理课二级页表的理解，并参考Lab2建页表的过程，设计一个应用程序（可基于python, ruby, C, C++，LISP等）可模拟实现(2)题中描述的抽象OS，可正确完成二级页表转换。
 
 ```
-#include <iostream>  
+#include <iostream> 
+using namespace std; 
+
 int memo[4096];
 uint32_t get_page(uint32_t v_addr) {
  	uint32_t ans = 0; 
@@ -50,7 +52,6 @@ uint32_t get_page(uint32_t v_addr) {
 	return ans; 
 } 
 
-using namespace std; 
 int main(int argc, const char * argv[]) { 
 	ifstream fin("1.txt"); 
 	char s[100]; 
