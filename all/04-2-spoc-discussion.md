@@ -37,7 +37,7 @@
  - [页置换算法实现的参考实例](https://github.com/chyyuu/ucore_lab/blob/master/related_info/lab3/page-replacement-policy.py)
  - 
  
----
+```
  #include <iostream>
   #include <stdlib.h>
   #include <stdio.h>
@@ -168,7 +168,7 @@
   p -> next -> next = NULL;
   func();
   }
-  ---
+```
  
 ## 扩展思考题
 （1）了解LIRS页置换算法的设计思路，尝试用高级语言实现其基本思路。此算法是江松博士（导师：张晓东博士）设计完成的，非常不错！
