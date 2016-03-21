@@ -38,6 +38,8 @@
  - 
  
 ```
+缺页率置换算法:
+
  #include <iostream>
   #include <stdlib.h>
   #include <stdio.h>
@@ -168,6 +170,9 @@
   p -> next -> next = NULL;
   func();
   }
+  
+  
+  
 ```
  
 ## 扩展思考题
