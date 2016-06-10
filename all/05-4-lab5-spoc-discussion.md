@@ -40,7 +40,7 @@ ebp:0xafffffd8 eip:0x0080034d args:0x00000000 0x00000000 0x00000000 0x00000000
 (1)-14.2(3):尝试在panic函数中获取和输出页表有效逻辑地址空间范围和在内存中的逻辑地址空间范围，然后在你希望的地方人为触发panic函数，并输出上述信息。
 
 触发panic()，在trap()里添加：
-if (tf->tf_cs != KERNEL_CS) 
+if (tf-&gt;tf_cs != KERNEL_CS) 
 {
     panic("Panic in Trap \n");
 }
@@ -88,3 +88,4 @@ PDE(001) fac00000-fb000000 00400000 -rw
   |-- PTE(000e0) faf00000-fafe0000 000e0000 urw
   |-- PTE(00001) fafeb000-fafec000 00001000 -rw
 --------------------- END ---------------------
+</unknown></unknown>
