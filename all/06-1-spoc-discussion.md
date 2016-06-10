@@ -1,3 +1,5 @@
+stride算法实现:
+
 class Simulator:
     def __init__(self):
         self.job_list = []
